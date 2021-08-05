@@ -1,38 +1,37 @@
 const express = require('express')
-const app = express()
+const router = express.Router()
+const usersController = require('../controllers/users.js')
 
-app.use((req, res, next) => {
-  next()
-})
+
 
 
 
 //GET /users
 //Return all users
-app.get()
+router.get('/users', usersController.listUsers)
 
 
 // GET /users/:id
 // Return just the user that matches the path param (id)
-app.get()
+router.get('/users/:id', usersController.showUsers)
 
 
 
 // POST /users
 // Create a new user (sampleUser). Find a way to increment the id so that we always insert the next available id in the list. Currently we have users 1-10 (data/index). The next user should be 11
-app.post()
+router.post("/users", usersController.createUsers)
 
 
 // PUT /users/:id
 // Update one user matching the path param (id). You may again use the sampleUser code as your "body" for this request
-app.put()
+router.put("/users/:id", usersController.updateUsers)
 
 
 
 // DELETE /users/:id
 // Delete one user by its id
-app.delete()
+router.delete("/users/:id", usersController.deleteUsers)
 
-app.listen(4000, () => {
-  console.log('Server is listening on port 4000.')
-})
+
+
+module.exports = router
